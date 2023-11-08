@@ -1,17 +1,21 @@
-const Dream =  (dream) => {
-  // const { dream } = props();
-const item = dream
-  console.log(` Dream: ${item}`);
+import "../App.css";
+
+const Dream = function (props) {
+  const displayedDream = props.dream;
+
+  console.log(` Dream: ${displayedDream}`);
 
   return (
     <div>
-      {/* {dream.image && <img className="image" src={`${dream.image}`} />}
-    {dream.dreamID &&
-      dream.story.map((paragraph, index) => {
+      <div>test</div>
+
+      <img className="image" src={`${displayedDream.image}`} />
+
+      {displayedDream.story.map((paragraph, index) => {
         return <div key={index}>{paragraph}</div>;
-      })} */}
+      })}
     </div>
   );
 };
 
-export default Dream();
+export default Dream;

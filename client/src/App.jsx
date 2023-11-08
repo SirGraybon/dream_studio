@@ -1,17 +1,14 @@
 import { useState, useEffect } from "react";
-import Dream from "./components/Dream";
+import Dream from "./components/Dream.jsx";
 
 import axios from "axios";
 import "./App.css";
 
 function App() {
   const [dreams, setDreams] = useState([]);
+  const [show, setShow] = useState(false);
   const [dream, setDream] = useState({
-    dreamID: 0,
-    userID: 0,
-    title: "",
-    image: "",
-    story: [],
+
   });
 
   // const getDreams = () => {
@@ -27,21 +24,30 @@ function App() {
       console.log(data.data);
       const newDream = data.data;
       setDreams(newDream);
-      // setDream(dreams[0])
+      console.log();
+      setDream(newDream[0]);
     });
   }, []);
 
+  const handleClick= ()=> {
+    setShow(!show)
+  }
+
   return (
     <div>
-      {!dream.dreamID &&
-        dreams.map((dream, index) => {
-          return (
-            <div className="dreamListItem" key={index} style={{backgroundImage: `url(${dream.image})` }}>
-              {dream.title}
-            </div>
-          );
-        })}
-      {dream.dreamID && <Dream dream={dream} />}
+      {show && <Dream dream={ dream } />}
+      {dreams.map((dream, index) => {
+        return (
+          <div
+            className="dreamListItem"
+            key={index}
+            style={{ backgroundImage: `url(${dream.image})` }}
+            onClick={() => handleClick()}
+          >
+            {dream.title}
+          </div>
+        );
+      })}
     </div>
   );
 }
