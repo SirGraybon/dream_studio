@@ -8,9 +8,8 @@ import Login from "./components/Login.jsx";
 function App() {
   const [dreams, setDreams] = useState([]);
   const [show, setShow] = useState(false);
-  const [dream, setDream] = useState({
-
-  });
+  const [dream, setDream] = useState({});
+  const [user, setUser] = useState(null)
 
   // const getDreams = () => {
   //   axios.get("http://localhost:8001/").then((data) => {
@@ -30,15 +29,15 @@ function App() {
     });
   }, []);
 
-  const handleClick= ()=> {
-    setShow(!show)
-  }
+  const handleClick = () => {
+    setShow(!show);
+  };
 
   return (
     <div>
-      <Login />
-      {show && <Dream dream={ dream } />}
-      {dreams.map((dream, index) => {
+      {show && <Dream dream={dream} />}
+      { !user && <Login setUser={setUser()}/> }
+      {user && dreams.map((dream, index) => {
         return (
           <div
             className="dreamListItem"

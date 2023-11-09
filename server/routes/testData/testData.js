@@ -1,21 +1,3 @@
-const express = require('express')
-const app = express()
-const path = require("path");
-const PORT = 8001
-const bodyParser = require("body-parser");
-
-const cors = require("cors")
-app.use(cors())
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
-app.use(
-  cors()
-);
-
-
 const dreams = [{
   dreamID: 1,
   userID: 1,
@@ -47,18 +29,7 @@ const dreams = [{
 }]
 
 
+const testUser = {user: "admin", password: "admin"}
 
 
-
-
-const usersRouter = require("./routes/usersRouter");
-app.get("/", (req, res) => {
-
-  res.send(dreams)
-})
-
-app.use("/users", usersRouter);
-
-app.listen(PORT, ()=> {
-  console.log(`App listening on port ${PORT}` )
-})
+// module.export dreams
