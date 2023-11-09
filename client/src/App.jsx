@@ -3,6 +3,7 @@ import Dream from "./components/Dream.jsx";
 
 import axios from "axios";
 import "./App.css";
+import Login from "./components/Login.jsx";
 
 function App() {
   const [dreams, setDreams] = useState([]);
@@ -35,6 +36,7 @@ function App() {
 
   return (
     <div>
+      <Login />
       {show && <Dream dream={ dream } />}
       {dreams.map((dream, index) => {
         return (
