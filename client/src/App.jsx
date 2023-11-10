@@ -1,55 +1,22 @@
 import { useState, useEffect } from "react";
-import Dream from "./components/Dream.jsx";
-
+import shareState, { StateProvider } from "./state/StateContext";
 import axios from "axios";
 import "./App.css";
-import Login from "./components/Login.jsx";
+import DreamList from "./components/DreamList.jsx";
 
 function App() {
-  const [dreams, setDreams] = useState([]);
-  const [show, setShow] = useState(false);
-  const [dream, setDream] = useState({});
-  const [user, setUser] = useState(null)
+  const { dreams } = shareState();
+  // const [dreams, setDreams] = useState([]);
+  // const [show, setShow] = useState(false);
+  // const [dream, setDream] = useState({});
+  // const [user, setUser] = useState(null);
 
-  // const getDreams = () => {
-  //   axios.get("http://localhost:8001/").then((data) => {
-  //     console.log(data.data);
-  //     const newDream = data.data;
-  //     setDreams(newDream);
-  //   });
-  // };
 
-  useEffect(() => {
-    axios.get("http://localhost:8001/").then((data) => {
-      console.log(data.data);
-      const newDream = data.data;
-      setDreams(newDream);
-      console.log();
-      setDream(newDream[0]);
-    });
-  }, []);
-
-  const handleClick = () => {
-    setShow(!show);
-  };
 
   return (
-    <div>
-      {show && <Dream dream={dream} />}
-      { !user && <Login setUser={setUser()}/> }
-      {user && dreams.map((dream, index) => {
-        return (
-          <div
-            className="dreamListItem"
-            key={index}
-            style={{ backgroundImage: `url(${dream.image})` }}
-            onClick={() => handleClick()}
-          >
-            {dream.title}
-          </div>
-        );
-      })}
-    </div>
+    <StateProvider>
+      {dreams.length > 0 && <DreamList />}
+    </StateProvider>
   );
 }
 
