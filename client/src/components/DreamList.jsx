@@ -16,7 +16,7 @@ const DreamList = () => {
 
   return (
     <div>
-      {dreams.map((dream, index) => {
+      {dreams && dreams.map((dream, index) => {
         return (
           <div
             className="dreamListItem"

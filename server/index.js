@@ -53,7 +53,7 @@ const dreams = [{
 
 const usersRouter = require("./routes/usersRouter");
 app.get("/", (req, res) => {
-
+console.log("dreams sent")
   res.send(dreams)
 })
 

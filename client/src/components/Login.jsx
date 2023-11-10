@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import shareState from "../state/StateContext";
 
-const Login = function (setUser) {
+const Login = function () {
+  const {setUser} = shareState()
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -11,7 +13,8 @@ const Login = function (setUser) {
     axios.post("http://localhost:8001/users/login", {username, password})
     .then((res) => {
       console.log(res.data)
-      res.data && setUser(username)
+      const userObj = {username}
+      res.data && setUser(userObj)
     });
   };
 
