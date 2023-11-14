@@ -6,19 +6,22 @@ const StateContext = createContext(initialState);
 export const StateProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  ////////////////////DREAMLIST FUNCTIONs////////////////////////////////////////////////////////////
-
-  const generateDreamList = (dreamList)=> {
-    console.log(dreamList)
-    dispatch({type:"GENERATE_DREAM_LIST", payload: dreamList})
-  }
+  ////////////////////USER FUNCTIONs////////////////////////////////////////////////////////////
   
   const setUser = (user)=> {
     console.log(user)
     
     dispatch({type:"LOG_USER_IN", payload: user})
   }
-
+  
+  ////////////////////DREAMLIST FUNCTIONs////////////////////////////////////////////////////////////
+  const generateDreamList = (dreamList)=> {
+    console.log(dreamList)
+    dispatch({type:"GENERATE_DREAM_LIST", payload: dreamList})
+  }
+  const setDream = (dreamIndex)=> {
+    dispatch({type:"SET_ACTIVE_DREAM", payload: dreamIndex})
+}
 
 
 
@@ -26,11 +29,12 @@ export const StateProvider = ({ children }) => {
 
   ////////////////////EXPORT FOR FUNCTIONs & STATE////////////////////////////////////////////////////////////
   const value = {
-    dreams: state.dreams,
+    dreamList: state.dreamList,
     selectedDream: state.selectedDream,
     user: state.user,
     generateDreamList,
-    setUser
+    setUser,
+    setDream
   };
 
   return (

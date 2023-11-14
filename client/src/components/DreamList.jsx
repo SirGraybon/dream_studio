@@ -1,34 +1,31 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
 import "../App.css";
 import shareState from "../state/StateContext";
-
+import Dream from "./Dream";
 
 const DreamList = () => {
-  const { dreams, generateDreamList, user } = shareState();
+  const { dreamList, selectedDream, setDream } = shareState();
 
-
-
-  useEffect(() => {
-    console.log(dreams);
-  }, [dreams]);
+  console.log(dreamList);
 
   return (
     <div>
-
-      {
-        dreams.map((dream, index) => {
+      {selectedDream ? (
+        <Dream />
+      ) : (
+        dreamList.map((dream, index) => {
           console.log("mapping");
           return (
             <div
               className="dreamListItem"
               key={index}
               style={{ backgroundImage: `url(${dream.image})` }}
+              onClick={() => setDream(index)}
             >
               {dream.title}
             </div>
           );
-        })}
+        })
+      )}
     </div>
   );
 };

@@ -6,10 +6,7 @@ import "./App.css";
 import Container from "./components/Container.jsx";
 
 function App() {
-  const { dreams, user } = shareState();
 
-  console.log(dreams.length);
-  console.log(user);
 
   return (
     <StateProvider>
