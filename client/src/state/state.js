@@ -1,16 +1,17 @@
 export const initialState = {
   dreams: [],
   selectedDream: {},
-  user: "",
+  user: {},
 };
 
 ////////////////////REDUCER SWITCH CASEs////////////////////////////////////////////////////////////
 export const reducer = function (state, action) {
   switch (action.type) {
     case "GENERATE_DREAM_LIST": {
+      console.log(action.payload)
       const updatedState = {
         ...state,
-        dreamList: action.payload,
+        dreamList: [action.payload]
       };
       return {
         updatedState
@@ -18,13 +19,12 @@ export const reducer = function (state, action) {
     }
 
     case "LOG_USER_IN": {
+
       const updatedState = {
         ...state,
         user: action.payload,
       };
-      return {
-        updatedState
-      };
+      return updatedState;
     }
   }
 };

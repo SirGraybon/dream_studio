@@ -14,6 +14,7 @@ export const StateProvider = ({ children }) => {
   }
   
   const setUser = (user)=> {
+    console.log(user)
     
     dispatch({type:"LOG_USER_IN", payload: user})
   }

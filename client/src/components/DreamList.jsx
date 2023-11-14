@@ -3,30 +3,32 @@ import axios from "axios";
 import "../App.css";
 import shareState from "../state/StateContext";
 
+
 const DreamList = () => {
-  const { dreams, generateDreamList } = shareState();
+  const { dreams, generateDreamList, user } = shareState();
+
+
 
   useEffect(() => {
-    axios.get("http://localhost:8001/").then((data) => {
-      console.log(data.data);
-      const dreamData = data.data;
-      generateDreamList(dreamData);
-    });
-  }, []);
+    console.log(dreams);
+  }, [dreams]);
 
   return (
     <div>
-      {dreams && dreams.map((dream, index) => {
-        return (
-          <div
-            className="dreamListItem"
-            key={index}
-            style={{ backgroundImage: `url(${dream.image})` }}
-          >
-            {dream.title}
-          </div>
-        );
-      })}
+
+      {
+        dreams.map((dream, index) => {
+          console.log("mapping");
+          return (
+            <div
+              className="dreamListItem"
+              key={index}
+              style={{ backgroundImage: `url(${dream.image})` }}
+            >
+              {dream.title}
+            </div>
+          );
+        })}
     </div>
   );
 };
