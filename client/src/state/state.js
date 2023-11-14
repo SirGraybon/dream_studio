@@ -1,6 +1,6 @@
 export const initialState = {
-  dreams: [],
-  selectedDream: {},
+  dreamList: [],
+  selectedDream: "",
   user: "",
 };
 
@@ -8,13 +8,20 @@ export const initialState = {
 export const reducer = function (state, action) {
   switch (action.type) {
     case "GENERATE_DREAM_LIST": {
+      console.log(state);
       const updatedState = {
         ...state,
         dreamList: action.payload,
       };
-      return {
-        updatedState
+      return updatedState;
+    }
+    case "SET_ACTIVE_DREAM": {
+      const selectedDream = state.dreamList[action.payload]
+      const updatedState = {
+        ...state,
+        selectedDream: selectedDream,
       };
+      return updatedState;
     }
 
     case "LOG_USER_IN": {
@@ -22,9 +29,7 @@ export const reducer = function (state, action) {
         ...state,
         user: action.payload,
       };
-      return {
-        updatedState
-      };
+      return updatedState;
     }
   }
 };
