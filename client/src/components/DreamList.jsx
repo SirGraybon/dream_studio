@@ -5,15 +5,12 @@ import Dream from "./Dream";
 const DreamList = () => {
   const { dreamList, selectedDream, setDream } = shareState();
 
-  console.log(dreamList);
-
   return (
     <div>
       {selectedDream ? (
         <Dream />
       ) : (
         dreamList.map((dream, index) => {
-          console.log("mapping");
           return (
             <div
               className="dreamListItem"

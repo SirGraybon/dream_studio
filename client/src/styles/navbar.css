@@ -1,0 +1,26 @@
+.navbar_container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  top: 10px;
+  left: 0;
+  width: 100%;
+}
+
+.navbar {
+  display: flex;
+  box-shadow: 2px 3px 3px #2e2e2f9e;
+  padding: 10px;
+  border-radius: 10px;
+  width: 900px;
+  justify-content: space-between;
+}
+
+.navbar_user {
+  display: flex;
+}
+
+.navbar_item {
+  padding-left: 30px;
+  cursor: pointer;
+}

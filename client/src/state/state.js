@@ -8,7 +8,6 @@ export const initialState = {
 export const reducer = function (state, action) {
   switch (action.type) {
     case "GENERATE_DREAM_LIST": {
-      console.log(state);
       const updatedState = {
         ...state,
         dreamList: action.payload,

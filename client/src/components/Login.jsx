@@ -3,22 +3,18 @@ import { useEffect, useState } from "react";
 import shareState from "../state/StateContext";
 
 const Login = function () {
-  const {setUser, user} = shareState()
+  const { setUser, user } = shareState();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-
-
   const authenticate = () => {
+    axios
+      .post("http://localhost:8001/users/login", { username, password })
+      .then((res) => {
+        const userObj = { username };
 
-    axios.post("http://localhost:8001/users/login", {username, password})
-    .then((res) => {
-      console.log(res.data)
-      const userObj = {username}
-
-      res.data && setUser(userObj)
-      console.log(JSON.stringify(user))
-    });
+        res.data && setUser(userObj);
+      });
   };
 
   return (
@@ -36,9 +32,8 @@ const Login = function () {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
       />
-      
+
       <button onClick={() => authenticate()}> Log in</button>
-      
     </>
   );
 };
