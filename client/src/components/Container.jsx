@@ -8,9 +8,8 @@ const Container = function () {
   const { user, generateDreamList } = shareState();
 
   useEffect(() => {
-    axios.get("http://localhost:8001/").then((data) => {
-      const dreamData = data.data;
-      generateDreamList(dreamData);
+    axios.get("http://localhost:8001/dreams/").then((data) => {
+      console.log(data)
     });
   }, []);
 
