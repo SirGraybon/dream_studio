@@ -9,7 +9,31 @@ const Container = function () {
 
   useEffect(() => {
     axios.get("http://localhost:8001/dreams/").then((data) => {
-      console.log(data)
+      console.log(data.data.dreams.rows);
+      const dreamData = data.data.dreams.rows;
+      const dreamsList = [];
+      let dream = { story: [] };
+      dreamData.forEach((chapter) => {
+        const target = dreamsList.find((d) => d.id === chapter.dream_id);
+        if (!target) {
+          dreamsList.push({
+            id: chapter.dream_id,
+            title: chapter.title,
+            story: [],
+            image: chapter.image,
+          });
+        }
+      })
+      dreamData.forEach((chapter) => {
+        const target = dreamsList.find((d) => d.id === chapter.dream_id);
+       target.story[chapter.dream_index] = chapter.description
+      })
+      
+      
+
+      // const dreamList = data.data.dreams.rows
+      generateDreamList(dreamsList);
+      console.log(dreamsList)
     });
   }, []);
 

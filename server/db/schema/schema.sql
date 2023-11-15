@@ -24,7 +24,8 @@ CREATE TABLE events (
   id SERIAL PRIMARY KEY NOT NULL,
   dream_id INTEGER REFERENCES dreams(id),
   description VARCHAR(500) NOT NULL,
-  image VARCHAR(255)
+  image VARCHAR(255),
+  dream_index INTEGER
 
 );
 
