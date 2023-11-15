@@ -8,8 +8,8 @@ const Dream = function () {
 
   return (
     <div>
-      <div onClick={()=> setDream("")}>X</div>
-      <div>test</div>
+      <div style={{cursor: "pointer"}} onClick={()=> setDream("")}>X</div>
+      
 
       <img className="image" src={`${selectedDream.image}`} />
 
