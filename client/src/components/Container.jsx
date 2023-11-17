@@ -7,7 +7,7 @@ import NavBar from "./NavBar";
 import DreamStudio from "./DreamStudio";
 
 const Container = function () {
-  const { user, generateDreamList } = shareState();
+  const { user, generateDreamList, view } = shareState();
 
   useEffect(() => {
     axios.get("http://localhost:8001/dreams/").then((data) => {
@@ -38,10 +38,9 @@ const Container = function () {
   return (
     <>
     <NavBar/>
-
-    {/* {!user ? <Login /> : <DreamList />} */}
-    <DreamStudio></DreamStudio>
-    <DreamList/>
+{!user && <Login/>}
+{user && view === "home" && <DreamList/>}
+{user && view === "dream_studio" && <DreamStudio/>}
     </>
   );
 };

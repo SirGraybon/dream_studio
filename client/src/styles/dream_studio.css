@@ -1,0 +1,10 @@
+.dream_stuio_form{
+  display: flex;
+  flex-direction: column;
+}
+
+.submit_button{
+  margin: 5px;
+  box-shadow: 2px 3px 3px #2e2e2f9e;
+  cursor: pointer;
+}

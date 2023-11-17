@@ -2,9 +2,11 @@
   position: fixed;
   display: flex;
   justify-content: center;
-  top: 10px;
+  top: 0px;
+  padding-top: 10px;
   left: 0;
   width: 100%;
+  background-color: rgb(255, 255, 255);
 }
 
 .navbar {

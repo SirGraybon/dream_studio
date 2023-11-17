@@ -1,5 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
+import "../styles/dream_studio.css"
+import AiTest from "./AiTest";
+
 
 const DreamStudio = () => {
   const [title, setTitle] = useState("");
@@ -19,7 +22,7 @@ const DreamStudio = () => {
   }
 
   return (
-    <div>
+    <div className="dream_stuio_form">
       <input
         type="text"
         value={title}
@@ -51,7 +54,8 @@ const DreamStudio = () => {
         placeholder="image URL"
       />
 
-      <div onClick={() => submitDream()}>Save Dream</div>
+      <div className="submit_button" onClick={() => submitDream()}>Save Dream</div>
+      <AiTest/>
     </div>
   );
 };

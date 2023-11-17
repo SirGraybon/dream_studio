@@ -1,0 +1,20 @@
+.dream_list_component{
+  display: flex;
+  margin-top: 100px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  max-width: 950px;
+}
+
+
+.dreamListItem {
+  width: 400px;
+  height: 400px;
+  margin: 10px;
+  background-color: aqua;
+  border-radius: 10px;
+  background-size: cover;
+  border: solid;
+  border-color: rgb(255, 255, 255);
+  box-shadow: 2px 3px 4px #2e2e2f9e;
+}

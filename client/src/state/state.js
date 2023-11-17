@@ -2,6 +2,7 @@ export const initialState = {
   dreamList: [],
   selectedDream: "",
   user: "",
+  view:"home"
 };
 
 ////////////////////REDUCER SWITCH CASEs////////////////////////////////////////////////////////////
@@ -27,6 +28,14 @@ export const reducer = function (state, action) {
       const updatedState = {
         ...state,
         user: action.payload,
+      };
+      return updatedState;
+    }
+    case "CHANGE_VIEW": {
+      const updatedState = {
+        ...state,
+        selectedDream: "",
+        view: action.payload,
       };
       return updatedState;
     }

@@ -10,6 +10,11 @@ export const StateProvider = ({ children }) => {
   const setUser = (user) => {
     dispatch({ type: "LOG_USER_IN", payload: user });
   };
+  ////////////////////NAVIGATION FUNCTIONs////////////////////////////////////////////////////////////
+
+  const changeView = (view) => {
+    dispatch({ type: "CHANGE_VIEW", payload: view });
+  };
 
   ////////////////////DREAMLIST FUNCTIONs////////////////////////////////////////////////////////////
   const generateDreamList = (dreamList) => {
@@ -24,9 +29,11 @@ export const StateProvider = ({ children }) => {
     dreamList: state.dreamList,
     selectedDream: state.selectedDream,
     user: state.user,
+    view: state.view,
     generateDreamList,
     setUser,
     setDream,
+    changeView
   };
 
   return (
