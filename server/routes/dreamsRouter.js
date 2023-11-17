@@ -6,8 +6,8 @@ const dreams = require("../db/queries/dreams");
 router.post("/submit", function(req,res) {
   const dreamObj = req.body
   dreams.newDream(dreamObj.user_id, dreamObj.title)
-  .then(result => dreamObj.events.forEach((element,index) => {
-    dreams.newEvent(result.rows[0].id, element, dreamObj.image, index )
+  .then(result => dreamObj.story.forEach((element,index) => {
+    dreams.newEvent(result.rows[0].id, element.event, element.image, index )
   }))
 })
 

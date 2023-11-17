@@ -16,7 +16,7 @@ export const reducer = function (state, action) {
       return updatedState;
     }
     case "SET_ACTIVE_DREAM": {
-      const selectedDream = state.dreamList[action.payload]
+      const selectedDream = action.payload
       const updatedState = {
         ...state,
         selectedDream: selectedDream,

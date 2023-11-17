@@ -21,6 +21,7 @@ export const StateProvider = ({ children }) => {
     dispatch({ type: "GENERATE_DREAM_LIST", payload: dreamList });
   };
   const setDream = (dreamIndex) => {
+    console.log(dreamIndex)
     dispatch({ type: "SET_ACTIVE_DREAM", payload: dreamIndex });
   };
 

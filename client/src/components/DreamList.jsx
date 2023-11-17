@@ -44,7 +44,7 @@ const DreamList = () => {
               className="dreamListItem"
               key={index}
               style={{ backgroundImage: `url(${dream.image})` }}
-              onClick={() => setDream(index)}
+              onClick={() => setDream(dreamList[index])}
             >
               {dream.title}
             </div>
