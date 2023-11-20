@@ -10,7 +10,10 @@ function App() {
 
   return (
     <StateProvider>
+      <div className="app_container">
+
       <Container></Container>
+      </div>
     </StateProvider>
   );
 }

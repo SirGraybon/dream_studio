@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../styles/dream_studio.css";
 import shareState from "../state/StateContext";
 import DreamDraft from "./DreamDraft";
+import AiTest from "./AiTest";
 import OpenAI from "openai";
 import { OPENAI_API_KEY } from "../../openAiAPIKey";
 
@@ -99,7 +100,7 @@ const DreamStudio = () => {
           <div className="submit_button" onClick={() => createDream()}>
             Show
           </div>
-          {/* <AiTest/> */}
+          <AiTest/>
         </div>
       ) : (
         <DreamDraft />
