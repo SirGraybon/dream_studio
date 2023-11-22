@@ -100,7 +100,7 @@ const DreamStudio = () => {
           <div className="submit_button" onClick={() => createDream()}>
             Show
           </div>
-          <AiTest/>
+
         </div>
       ) : (
         <DreamDraft />
