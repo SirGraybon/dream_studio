@@ -27,16 +27,23 @@
   cursor: pointer;
 }
 .new_dream {
+  background-image: linear-gradient(rgb(212, 159, 89), pink);
   margin-left: 50px;
   cursor: pointer;
   font-weight: bolder;
+  padding: 2px 8px 2px 8px;
   transition: 0.2s;
+  border-radius: 10px;
+
+  
+  
   
 }
 
 
 .new_dream:hover{
-  text-decoration: overline;
+  /* background-image: linear-gradient(pink, rgb(212, 89, 212));
+  text-decoration: overline; */
 }
 .navbar_item:hover{
   text-decoration: overline;
