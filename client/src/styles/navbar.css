@@ -26,3 +26,18 @@
   padding-left: 30px;
   cursor: pointer;
 }
+.new_dream {
+  margin-left: 50px;
+  cursor: pointer;
+  font-weight: bolder;
+  transition: 0.2s;
+  
+}
+
+
+.new_dream:hover{
+  text-decoration: overline;
+}
+.navbar_item:hover{
+  text-decoration: overline;
+}

@@ -5,6 +5,7 @@ import axios from "axios";
 import DreamList from "./DreamList";
 import NavBar from "./NavBar";
 import DreamStudio from "./DreamStudio";
+import AiTest from "./AiTest";
 
 const Container = function () {
   const { user, generateDreamList, view } = shareState();
@@ -41,6 +42,7 @@ const Container = function () {
 {!user && <Login/>}
 {user && view === "home" && <DreamList/>}
 {user && view === "dream_studio" && <DreamStudio/>}
+{user && view === "AI_TEST" && <AiTest/>}
     </>
   );
 };

@@ -5,6 +5,7 @@ import DreamDraft from "./DreamDraft";
 import AiTest from "./AiTest";
 import OpenAI from "openai";
 import { OPENAI_API_KEY } from "../../openAiAPIKey";
+import LoadingSpinner from "./LoadingSpinner";
 
 const openai = new OpenAI({
   apiKey: OPENAI_API_KEY,
@@ -19,7 +20,7 @@ const DreamStudio = () => {
   const [image1, setImage1] = useState("");
   const [image2, setImage2] = useState("");
   const [image3, setImage3] = useState("");
-
+  const [loading, setloading] = useState(false);
   const { setDream, selectedDream } = shareState();
 
   async function testQuery() {
@@ -29,6 +30,7 @@ const DreamStudio = () => {
       n: 1,
       size: "1024x1024",
     });
+
     const response2 = await openai.images.generate({
       model: "dall-e-3",
       prompt: `${partTwo}`,
@@ -46,9 +48,9 @@ const DreamStudio = () => {
     setImage2(response2.data[0].url);
     setImage3(response3.data[0].url);
 
-    console.log(response3.data[0].url);
-
-    await createDream();
+    // console.log(response3.data[0].url);
+return true
+    
   }
 
   const createDream = () => {
@@ -63,11 +65,20 @@ const DreamStudio = () => {
       user_id: 1,
     };
     setDream(draft);
+    setloading(false)
   };
+
+
+  const handleGenerate = () => {
+    setloading(true)
+    testQuery().then((result) => setTimeout(createDream(), 1000))
+
+  }
 
   return (
     <>
-      {!selectedDream ? (
+
+      {!selectedDream && !loading && (
         <div className="dream_stuio_form">
           <input
             type="text"
@@ -94,17 +105,19 @@ const DreamStudio = () => {
             placeholder="Part Three"
           />
 
-          <div className="submit_button" onClick={() => testQuery()}>
-            generate
+
+          <div className="submit_button" onClick={() => handleGenerate()}>
+            Generate Dream
           </div>
           <div className="submit_button" onClick={() => createDream()}>
-            Show
+            failsafe--show
           </div>
 
+
         </div>
-      ) : (
-        <DreamDraft />
-      )}
+      ) }
+        { selectedDream && !loading && <DreamDraft />}
+        { loading && <LoadingSpinner/>}
     </>
   );
 };
