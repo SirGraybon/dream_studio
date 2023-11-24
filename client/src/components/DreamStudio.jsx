@@ -23,62 +23,54 @@ const DreamStudio = () => {
   const [loading, setloading] = useState(false);
   const { setDream, selectedDream } = shareState();
 
-  async function query(callback) {
-    const response = await openai.images.generate({
-      model: "dall-e-2",
-      prompt: `${partOne}`,
-      n: 1,
-      size: "1024x1024",
-    });
 
-    return callback(response.data[0].url);
-  }
+
 
   async function testQuery() {
-    // await openai.images
-    //   .generate({
-    //     model: "dall-e-2",
-    //     prompt: `${partOne}`,
-    //     n: 1,
-    //     size: "1024x1024",
-    //   })
-    //   .then((response1) => setImage1(response1.data[0].url));
+    const response1 = await openai.images
+      .generate({
+        model: "dall-e-2",
+        prompt: `${partOne}`,
+        n: 1,
+        size: "1024x1024",
+      })
+      
 
-    // await openai.images
-    //   .generate({
-    //     model: "dall-e-2",
-    //     prompt: `${partTwo}`,
-    //     n: 1,
-    //     size: "1024x1024",
-    //   })
-    //   .then((response2) => setImage2(response2.data[0].url));
+      const response2 = await openai.images
+      .generate({
+        model: "dall-e-2",
+        prompt: `${partTwo}`,
+        n: 1,
+        size: "1024x1024",
+      })
+      
 
-    // await openai.images
-    //   .generate({
-    //     model: "dall-e-2",
-    //     prompt: `${partThree}`,
-    //     n: 1,
-    //     size: "1024x1024",
-    //   })
-    //   .then((response3) => setImage3(response3.data[0].url))
-    //   .then(() => createDream());
+      const response3 = await openai.images
+      .generate({
+        model: "dall-e-2",
+        prompt: `${partThree}`,
+        n: 1,
+        size: "1024x1024",
+      })
+      
+      
 
-    query(setImage1);
-    query(setImage2);
-    query(setImage3).then(() => 
-      setTimeout(() => {
-        createDream();
-      }, 1000)
-    );
+      const images =  {
+        one: response1.data[0].url,
+        two: response2.data[0].url,
+        three: response3.data[0].url
+      }
+
+      return createDream(images)
   }
 
-  const createDream = () => {
+  const createDream = (response) => {
     const draft = {
       title: title,
       story: [
-        { event: partOne, image: image1 },
-        { event: partTwo, image: image2 },
-        { event: partThree, image: image3 },
+        { event: partOne, image: response.one },
+        { event: partTwo, image: response.two },
+        { event: partThree, image: response.three },
       ],
       image: image1,
       user_id: 1,
@@ -89,11 +81,7 @@ const DreamStudio = () => {
 
   const handleGenerate = () => {
     setloading(true);
-    Promise.all([testQuery()]).then(
-      setTimeout(() => {
-        createDream();
-      }, 1000)
-    );
+    Promise.all([testQuery()]).then((response) => createDream(response));
   };
 
   return (
