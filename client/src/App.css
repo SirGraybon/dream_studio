@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  /* background-image: url("./src/assets/dreamStudio.svg")  ; */
 }
 
 .logo {
@@ -42,13 +43,12 @@
 }
 
 
-/* .app_container {
-  position: fixed;
+.app_container {
+  /* position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
-  width: 100vw;
-  background-image: url("./src/assets/dreamStudio.svg")  ;
-} */
+  width: 100vw; */
+}
 
 

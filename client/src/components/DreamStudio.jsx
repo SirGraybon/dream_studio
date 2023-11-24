@@ -23,34 +23,53 @@ const DreamStudio = () => {
   const [loading, setloading] = useState(false);
   const { setDream, selectedDream } = shareState();
 
-  async function testQuery() {
-    const response1 = await openai.images.generate({
-      model: "dall-e-3",
+  async function query(callback) {
+    const response = await openai.images.generate({
+      model: "dall-e-2",
       prompt: `${partOne}`,
       n: 1,
       size: "1024x1024",
     });
 
-    const response2 = await openai.images.generate({
-      model: "dall-e-3",
-      prompt: `${partTwo}`,
-      n: 1,
-      size: "1024x1024",
-    });
-    const response3 = await openai.images.generate({
-      model: "dall-e-3",
-      prompt: `${partThree}`,
-      n: 1,
-      size: "1024x1024",
-    });
+    return callback(response.data[0].url);
+  }
 
-    setImage1(response1.data[0].url);
-    setImage2(response2.data[0].url);
-    setImage3(response3.data[0].url);
+  async function testQuery() {
+    // await openai.images
+    //   .generate({
+    //     model: "dall-e-2",
+    //     prompt: `${partOne}`,
+    //     n: 1,
+    //     size: "1024x1024",
+    //   })
+    //   .then((response1) => setImage1(response1.data[0].url));
 
-    // console.log(response3.data[0].url);
-return true
-    
+    // await openai.images
+    //   .generate({
+    //     model: "dall-e-2",
+    //     prompt: `${partTwo}`,
+    //     n: 1,
+    //     size: "1024x1024",
+    //   })
+    //   .then((response2) => setImage2(response2.data[0].url));
+
+    // await openai.images
+    //   .generate({
+    //     model: "dall-e-2",
+    //     prompt: `${partThree}`,
+    //     n: 1,
+    //     size: "1024x1024",
+    //   })
+    //   .then((response3) => setImage3(response3.data[0].url))
+    //   .then(() => createDream());
+
+    query(setImage1);
+    query(setImage2);
+    query(setImage3).then(() => 
+      setTimeout(() => {
+        createDream();
+      }, 1000)
+    );
   }
 
   const createDream = () => {
@@ -65,59 +84,61 @@ return true
       user_id: 1,
     };
     setDream(draft);
-    setloading(false)
+    setloading(false);
   };
 
-
   const handleGenerate = () => {
-    setloading(true)
-    testQuery().then((result) => setTimeout(createDream(), 1000))
-
-  }
+    setloading(true);
+    Promise.all([testQuery()]).then(
+      setTimeout(() => {
+        createDream();
+      }, 1000)
+    );
+  };
 
   return (
     <>
-
       {!selectedDream && !loading && (
         <div className="dream_stuio_form">
           <input
+            className="title"
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="title"
           />
-          <input
+          <textarea
+            className="story_part"
             type="text"
             value={partOne}
             onChange={(e) => setPartOne(e.target.value)}
             placeholder="Part One"
           />
-          <input
+          <textarea
+            className="story_part"
             type="text"
             value={partTwo}
             onChange={(e) => setPartTwo(e.target.value)}
             placeholder="Part Two"
           />
-          <input
+          <textarea
+            className="story_part"
             type="text"
             value={partThree}
             onChange={(e) => setPartThree(e.target.value)}
             placeholder="Part Three"
           />
 
-
-          <div className="submit_button" onClick={() => handleGenerate()}>
+          <div className="submit_button" onClick={() => testQuery()}>
             Generate Dream
           </div>
           <div className="submit_button" onClick={() => createDream()}>
             failsafe--show
           </div>
-
-
         </div>
-      ) }
-        { selectedDream && !loading && <DreamDraft />}
-        { loading && <LoadingSpinner/>}
+      )}
+      {selectedDream && !loading && <DreamDraft />}
+      {loading && <LoadingSpinner />}
     </>
   );
 };

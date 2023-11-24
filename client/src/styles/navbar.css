@@ -10,12 +10,14 @@
 }
 
 .navbar {
+  background-color: rgb(255, 255, 255);
   display: flex;
   box-shadow: 2px 3px 3px #2e2e2f9e;
   padding: 10px;
   border-radius: 10px;
-  width: 900px;
+  width: 1280px;
   justify-content: space-between;
+  height: 30px;
 }
 
 .navbar_user {
@@ -27,14 +29,14 @@
   cursor: pointer;
 }
 .new_dream {
-  background-image: linear-gradient(rgb(212, 159, 89), pink);
+  /* background-image: linear-gradient(rgb(212, 159, 89), pink); */
   margin-left: 50px;
   cursor: pointer;
   font-weight: bolder;
   padding: 2px 8px 2px 8px;
   transition: 0.2s;
   border-radius: 10px;
-
+  
   
   
   
@@ -42,8 +44,9 @@
 
 
 .new_dream:hover{
-  /* background-image: linear-gradient(pink, rgb(212, 89, 212));
-  text-decoration: overline; */
+  /* background-image: linear-gradient(pink, rgb(212, 89, 212)); */
+  text-decoration: overline;
+  /* padding: 1px 9px 3px 9px;  */
 }
 .navbar_item:hover{
   text-decoration: overline;
